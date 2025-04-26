@@ -83,9 +83,6 @@ export default function OrganDonationPage() {
       const res = await registerOrganDonor(userData)
       console.log("backend response:", res)
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-
       toast({
         title: "Registration successful!",
         description: "Thank you for registering as an organ donor.",
