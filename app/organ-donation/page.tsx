@@ -79,7 +79,9 @@ export default function OrganDonationPage() {
     try {
       // Here you would connect to your backend API
       // For now, we'll simulate a successful submission
-      console.log("Form values:", values)
+      const { ...userData } = values
+      const res = await registerOrganDonor(userData)
+      console.log("backend response:", res)
 
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500))
