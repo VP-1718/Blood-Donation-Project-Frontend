@@ -47,6 +47,20 @@ export default function SearchPage() {
     }
   }
 
+  const fetchOrganDonors = async () => {
+    setLoading(true)
+    try {
+      const data = await getDonors()
+      setDonors(data)
+      setError(null)
+    } catch (err) {
+      setError("Failed to fetch donors. Please try again later.")
+      setDonors([])
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const handleSearch = async () => {
     setLoading(true)
     try {

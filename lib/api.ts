@@ -32,6 +32,15 @@ export const registerUser = async (userData: any) => {
   }
 }
 
+export const registerOrganDonor = async (userData: any) => {
+  try {
+    const response = await api.post("/users/registerOrganDonor", userData)
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
 export const loginUser = async (credentials: any) => {
   try {
     const response = await api.post("/users/login", credentials)
@@ -48,6 +57,15 @@ export const loginUser = async (credentials: any) => {
 export const getDonors = async (params?: any) => {
   try {
     const response = await api.get("/users/donors", { params })
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
+export const getOrganDonors = async (params?: any) => {
+  try {
+    const response = await api.get("/users/organDonors", { params })
     return response.data
   } catch (error) {
     throw error
