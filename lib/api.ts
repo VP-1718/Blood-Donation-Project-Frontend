@@ -12,9 +12,12 @@ const api = axios.create({
 // Add a request interceptor to include the token in requests
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token")
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`
+    // Check if we're in a browser environment before accessing localStorage
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token")
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+      }
     }
     return config
   },
@@ -35,7 +38,7 @@ export const registerUser = async (userData: any) => {
 export const loginUser = async (credentials: any) => {
   try {
     const response = await api.post("/users/login", credentials)
-    if (response.data.token) {
+    if (response.data.token && typeof window !== "undefined") {
       localStorage.setItem("token", response.data.token)
       localStorage.setItem("user", JSON.stringify(response.data.user))
     }
@@ -48,15 +51,6 @@ export const loginUser = async (credentials: any) => {
 export const getDonors = async (params?: any) => {
   try {
     const response = await api.get("/users/donors", { params })
-    return response.data
-  } catch (error) {
-    throw error
-  }
-}
-
-export const getOrganDonors = async (params?: any) => {
-  try {
-    const response = await api.get("/users/organDonors", { params })
     return response.data
   } catch (error) {
     throw error
@@ -82,8 +76,10 @@ export const updateUserProfile = async (userId: string, userData: any) => {
 }
 
 export const logoutUser = () => {
-  localStorage.removeItem("token")
-  localStorage.removeItem("user")
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("token")
+    localStorage.removeItem("user")
+  }
 }
 
 export const registerOrganDonor = async (donorData: any) => {

@@ -97,11 +97,18 @@ export default function OrganDonationPage() {
     }
   }
 
+  const handleTabChange = (value: string) => {
+    // This is a workaround for the tab click handler
+    if (value === "register") {
+      // You can add any logic here if needed
+    }
+  }
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">Organ Donation</h1>
 
-      <Tabs defaultValue="about">
+      <Tabs defaultValue="about" onValueChange={handleTabChange}>
         <TabsList className="mb-6">
           <TabsTrigger value="about">About Organ Donation</TabsTrigger>
           <TabsTrigger value="register">Register as Donor</TabsTrigger>
@@ -122,7 +129,13 @@ export default function OrganDonationPage() {
               </p>
 
               <div className="mt-6">
-                <Button size="lg" onClick={() => document.querySelector('[data-value="register"]')?.click()}>
+                <Button
+                  size="lg"
+                  onClick={() => {
+                    const registerTab = document.querySelector('[data-value="register"]') as HTMLElement
+                    if (registerTab) registerTab.click()
+                  }}
+                >
                   Register Now
                 </Button>
               </div>

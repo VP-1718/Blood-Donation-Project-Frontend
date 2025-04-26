@@ -55,6 +55,8 @@ export default function ProfilePage() {
 
   useEffect(() => {
     const checkAuth = () => {
+      if (typeof window === "undefined") return
+
       const storedUser = localStorage.getItem("user")
       if (!storedUser) {
         router.push("/login")
@@ -97,9 +99,11 @@ export default function ProfilePage() {
       await updateUserProfile(user._id, values)
 
       // Update local storage user data
-      const updatedUser = { ...user, ...values }
-      localStorage.setItem("user", JSON.stringify(updatedUser))
-      setUser(updatedUser)
+      if (typeof window !== "undefined") {
+        const updatedUser = { ...user, ...values }
+        localStorage.setItem("user", JSON.stringify(updatedUser))
+        setUser(updatedUser)
+      }
 
       toast({
         title: "Profile updated",

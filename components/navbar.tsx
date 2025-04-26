@@ -15,9 +15,11 @@ export default function Navbar() {
 
   useEffect(() => {
     // Check if user is logged in
-    const storedUser = localStorage.getItem("user")
-    if (storedUser) {
-      setUser(JSON.parse(storedUser))
+    if (typeof window !== "undefined") {
+      const storedUser = localStorage.getItem("user")
+      if (storedUser) {
+        setUser(JSON.parse(storedUser))
+      }
     }
   }, [pathname])
 
@@ -35,7 +37,7 @@ export default function Navbar() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Search Blood Donors", href: "/search" },
-    { name: "Search Organ Donor", href: "/organ-donation" },
+    { name: "Organ Donation", href: "/organ-donation" },
   ]
 
   return (
