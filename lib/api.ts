@@ -32,15 +32,6 @@ export const registerUser = async (userData: any) => {
   }
 }
 
-export const registerOrganDonor = async (userData: any) => {
-  try {
-    const response = await api.post("/users/registerOrganDonor", userData)
-    return response.data
-  } catch (error) {
-    throw error
-  }
-}
-
 export const loginUser = async (credentials: any) => {
   try {
     const response = await api.post("/users/login", credentials)
@@ -97,7 +88,7 @@ export const logoutUser = () => {
 
 export const registerOrganDonor = async (donorData: any) => {
   try {
-    const response = await api.post("/users/organ-donors", donorData)
+    const response = await api.post("/users/registerOrganDonor", donorData)
     return response.data
   } catch (error) {
     throw error
