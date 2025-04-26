@@ -90,6 +90,7 @@ export default function OrganDonationPage() {
 
       form.reset()
     } catch (err: any) {
+      console.log(err)
       setError("Registration failed. Please try again later.")
     } finally {
       setIsSubmitting(false)
