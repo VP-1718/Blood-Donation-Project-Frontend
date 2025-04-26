@@ -93,7 +93,7 @@ export const registerOrganDonor = async (donorData: any) => {
 
 export const getOrganDonors = async (params?: any) => {
   try {
-    const response = await api.get("/users/organ-donors", { params })
+    const response = await api.get("/users/organDonors", { params })
     return response.data
   } catch (error) {
     throw error

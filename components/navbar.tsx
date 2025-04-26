@@ -33,10 +33,11 @@ export default function Navbar() {
     setIsMenuOpen(!isMenuOpen)
   }
 
-  // Update the navItems array to include the Organ Donation link
+  // Update the navItems array to have a single search option instead of separate ones
+
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "Search Blood Donors", href: "/search" },
+    { name: "Find Donors", href: "/search" },
     { name: "Organ Donation", href: "/organ-donation" },
   ]
 
